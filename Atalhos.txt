@@ -1,0 +1,41 @@
+Ctrl + P: Abrir o comando "Ir para Arquivo" para pesquisar e abrir rapidamente arquivos no seu projeto.
+
+Ctrl + Shift + N: Abrir uma nova janela do VSCode.
+
+Ctrl + Shift + P: Abrir a Paleta de Comandos para acessar todos os comandos disponíveis no VSCode.
+
+Ctrl + `: Alternar entre o editor e o terminal integrado.
+
+Ctrl + Shift + E: Abrir o Explorer de Arquivos para navegar e gerenciar os arquivos do seu projeto.
+
+Ctrl + Shift + F: Abrir a janela de pesquisa global para pesquisar em todos os arquivos do seu projeto.
+
+Ctrl + B: Alternar a visibilidade da barra lateral (Explorer, Git, etc.).
+
+Ctrl + /: Comentar ou descomentar linhas de código selecionadas.
+
+Ctrl + D: Selecionar a próxima ocorrência da palavra atualmente selecionada.
+
+Ctrl + Shift + L: Selecionar todas as ocorrências da palavra atualmente selecionada.
+
+const express = require('express')
+const {body, validationResult} = require('express-validator')
+const bodyParser = require('body-parser')
+const app = express()
+
+app.use(bodyParser.json())
+
+app.post('/user', [
+    body('username').isEmail(),
+    body('password').isLength({min: 5})
+], (req, res) => {
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        return res.status(400).json({erros: errors.array()})
+    }    
+    res.json({msg: "sucesso"})
+})
+
+app.listen(3000, () => {
+    console.log('Rodando na porta 3000')
+})
