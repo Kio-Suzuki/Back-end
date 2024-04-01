@@ -12,7 +12,7 @@ app.post('/user', [
     if (!erro.isEmpty()) {
         return res.status(400).json({ errors: erro.array() })
     }
-    res.send('Usuário criado!')
+    res.send('Usuário criado')
 });
 
 app.listen(3000, () => {
