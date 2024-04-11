@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+</head>
+<body>
+    <h1>AGENDA</h1>
+    
+    <h2>Contatos</h2>
+
+    <ul>
+    {{#contacts}}
+        <li>{{nome}} - {{telefone}} - {{email}} - {{endereco}} <a href="/?tid={{id}}">editar</a> <a href="/contatos/del/{{id}}">excluir</a> </li>
+    {{/contacts}}
+    </ul>
+
+    <h2>Novo contato</h2>
+    <form action="/contatos" method="post">
+        {{#contact.id}}
+        <input type="hidden" name="id" value="{{.}}">
+        {{/contact.id}}
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="{{contact.nome}}"/><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="{{contact.telefone}}"/><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" value="{{contact.email}}"/><br>
+
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" name="endereco" value="{{contact.endereco}}"/><br>
+
+        <input type="submit" value="Salvar" class="btn-primary"/>
+    </form>
+    <p>{{erro}}</p>
+</body>
+</html>
